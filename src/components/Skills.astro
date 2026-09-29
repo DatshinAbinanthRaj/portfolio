@@ -1,0 +1,74 @@
+---
+// src/components/Skills.astro
+import { portfolioData } from '../data/portfolio';
+
+const skillGroups = portfolioData.skillGroups;
+---
+
+<section id="skills" class="w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <div>
+      <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#7C5CFF] mb-3">
+        <span class="w-2 h-2 rounded-full bg-[#7C5CFF]"></span>
+        <span>03 // Expertise</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#E5E2E3]">
+        Skills, Tools &amp; Methodologies
+      </h2>
+    </div>
+    <p class="font-body text-sm sm:text-base text-[#938EA1] max-w-md">
+      Synthesizing decadelong CAD/BIM precision engineering with frontier LLM evaluation, rubric architecture, and software development.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+    {skillGroups.map((group, idx) => (
+      <div class="rounded-3xl bg-[#141417] border border-white/[0.08] hover:border-[#7C5CFF]/50 p-8 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(124,92,255,0.15)] flex flex-col justify-between group">
+        <div>
+          <!-- Card Header -->
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#1D1C22] border border-white/10 group-hover:border-[#7C5CFF]/60 flex items-center justify-center text-[#CABEFF] group-hover:text-white transition-all duration-300">
+              {group.icon === 'brain' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              )}
+              {group.icon === 'code' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              )}
+              {group.icon === 'compass' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              )}
+              {group.icon === 'layers' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              )}
+            </div>
+            <span class="font-mono text-xs text-[#938EA1]">0{idx + 1}</span>
+          </div>
+
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-[#E5E2E3] mb-2">
+            {group.name}
+          </h3>
+          <p class="font-body text-xs sm:text-sm text-[#938EA1] mb-6">
+            {group.description}
+          </p>
+        </div>
+
+        <!-- Skills Pills -->
+        <div class="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]">
+          {group.skills.map((skill) => (
+            <span class="px-3 py-1.5 rounded-xl text-xs font-mono font-medium tracking-wide bg-[#1C1B20] text-[#CABEFF] border border-white/[0.06] hover:border-[#7C5CFF]/50 hover:bg-[#23222B] transition-colors duration-200">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

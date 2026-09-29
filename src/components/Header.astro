@@ -1,0 +1,230 @@
+---
+// src/components/Header.astro
+import { portfolioData } from '../data/portfolio';
+
+const navItems = [
+  { label: 'Work', href: '#selected-work' },
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] bg-[#0A0A0B]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_12px_rgba(0,0,0,0.25)]">
+  <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 h-20 flex items-center justify-between">
+    <!-- Logo Initials Monogram -->
+    <a href="#" class="group relative flex items-center gap-2 text-decoration-none magnetic-item" aria-label="Datshin Abinanth Raj - Return to top">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#1C1B1C] to-[#2A2A2B] border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:border-[#7C5CFF] group-hover:shadow-[0_0_20px_rgba(124,92,255,0.4)]">
+        <span class="font-display font-bold text-lg tracking-tight text-[#CABEFF] group-hover:text-white transition-colors duration-300">
+          {portfolioData.personal.initials}
+        </span>
+      </div>
+      <div class="hidden sm:flex flex-col">
+        <span class="font-display font-bold text-sm tracking-tight text-[#E5E2E3]">Datshin Raj</span>
+        <span class="text-[10px] font-mono uppercase tracking-widest text-[#938EA1]">AI Trainer • Helsinki</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-full bg-[#161518]/90 border border-white/10 shadow-inner" aria-label="Main Navigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          data-nav-link
+          class="px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-[#938EA1] hover:text-[#E5E2E3] rounded-full transition-all duration-200 hover:bg-white/[0.06] active-nav-indicator"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Header Actions (Hire Me, Theme Toggle, Mobile Menu) -->
+    <div class="flex items-center gap-3">
+      <!-- Dark/Light Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="w-10 h-10 rounded-full border border-white/10 bg-[#161518] hover:border-[#7C5CFF]/60 flex items-center justify-center text-[#E5E2E3] hover:text-[#CABEFF] transition-all duration-300 magnetic-item"
+        aria-label="Toggle light and dark color mode"
+      >
+        <!-- Sun Icon (visible in dark mode) -->
+        <svg id="theme-sun" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+        </svg>
+        <!-- Moon Icon (visible in light mode) -->
+        <svg id="theme-moon" class="w-4 h-4 hidden transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- "Hire Me" Pill CTA -->
+      <a
+        href="#contact"
+        class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full font-display text-xs font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-[#7C5CFF] to-[#603CE2] hover:from-[#947DFF] hover:to-[#7C5CFF] shadow-[0_0_24px_rgba(124,92,255,0.35)] hover:shadow-[0_0_30px_rgba(124,92,255,0.55)] transition-all duration-300 magnetic-item"
+      >
+        <span>Hire Me</span>
+        <span class="w-2 h-2 rounded-full bg-[#4EDEA3] animate-pulse"></span>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden w-11 h-11 rounded-xl border border-white/10 bg-[#161518] flex flex-col items-center justify-center gap-1.5 focus:outline-none"
+        aria-label="Open mobile navigation menu"
+        aria-expanded="false"
+      >
+        <span id="ham-bar-1" class="w-5 h-0.5 bg-[#E5E2E3] transition-transform duration-300 origin-center"></span>
+        <span id="ham-bar-2" class="w-5 h-0.5 bg-[#E5E2E3] transition-opacity duration-300"></span>
+        <span id="ham-bar-3" class="w-5 h-0.5 bg-[#E5E2E3] transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Fullscreen Navigation Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-20 bg-[#0A0A0B]/98 backdrop-blur-2xl z-40 flex flex-col justify-between p-8 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden border-t border-white/10"
+  >
+    <div class="flex flex-col gap-6 pt-6">
+      {navItems.map((item, index) => (
+        <a
+          href={item.href}
+          data-mobile-link
+          class="font-display text-3xl font-bold tracking-tight text-[#938EA1] hover:text-[#CABEFF] transition-colors duration-200 mobile-nav-item flex items-center justify-between py-2 border-b border-white/[0.06]"
+        >
+          <span>{item.label}</span>
+          <span class="text-xs font-mono text-[#7C5CFF]">0{index + 1}</span>
+        </a>
+      ))}
+      <a
+        href="#contact"
+        data-mobile-link
+        class="mt-4 flex items-center justify-center gap-2 py-4 rounded-xl font-display text-sm font-bold uppercase tracking-wider text-white bg-[#7C5CFF]"
+      >
+        <span>Hire Me</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#4EDEA3] animate-pulse"></span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Footer -->
+    <div class="flex flex-col gap-2 pt-6 border-t border-white/10 text-xs text-[#938EA1]">
+      <p class="font-medium text-[#E5E2E3]">{portfolioData.personal.name}</p>
+      <p>{portfolioData.personal.email}</p>
+      <p class="text-[11px] text-[#7C5CFF]">{portfolioData.personal.statusBadge}</p>
+    </div>
+  </div>
+</header>
+
+<style>
+  .active-nav-item {
+    color: #FFFFFF !important;
+    background-color: rgba(124, 92, 255, 0.25) !important;
+    font-weight: 600 !important;
+  }
+</style>
+
+<script>
+  // Hide on scroll down, reveal on scroll up
+  let lastScrollY = window.scrollY;
+  const header = document.getElementById('site-header');
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    if (!header) return;
+
+    if (currentScrollY > 120 && currentScrollY > lastScrollY) {
+      // Scrolling down -> hide header
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      // Scrolling up -> reveal header
+      header.style.transform = 'translateY(0)';
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
+  // Mobile menu morphing
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamBar1 = document.getElementById('ham-bar-1');
+  const hamBar2 = document.getElementById('ham-bar-2');
+  const hamBar3 = document.getElementById('ham-bar-3');
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    mobileBtn?.setAttribute('aria-expanded', isMenuOpen ? 'true' : 'false');
+
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('translate-x-full');
+      hamBar1?.style.setProperty('transform', 'translateY(8px) rotate(45deg)');
+      if (hamBar2) hamBar2.style.opacity = '0';
+      hamBar3?.style.setProperty('transform', 'translateY(-8px) rotate(-45deg)');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.add('translate-x-full');
+      hamBar1?.style.removeProperty('transform');
+      if (hamBar2) hamBar2.style.opacity = '1';
+      hamBar3?.style.removeProperty('transform');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mobileBtn?.addEventListener('click', toggleMenu);
+
+  // Close mobile menu when link is clicked
+  const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) toggleMenu();
+    });
+  });
+
+  // Dark / Light Mode Switch
+  const themeToggle = document.getElementById('theme-toggle');
+  const sunIcon = document.getElementById('theme-sun');
+  const moonIcon = document.getElementById('theme-moon');
+
+  function updateThemeUI(theme: string) {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light');
+      sunIcon?.classList.add('hidden');
+      moonIcon?.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.remove('light');
+      sunIcon?.classList.remove('hidden');
+      moonIcon?.classList.add('hidden');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  updateThemeUI(savedTheme);
+
+  themeToggle?.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light');
+    const newTheme = isLight ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    updateThemeUI(newTheme);
+  });
+
+  // Active Section Observer for Nav links
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active-nav-item');
+          } else {
+            link.classList.remove('active-nav-item');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="est-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0B10"/>
+      <stop offset="100%" stop-color="#10131E"/>
+    </linearGradient>
+    <radialGradient id="est-glow" cx="70%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#est-bg)"/>
+  <circle cx="850" cy="400" r="400" fill="url(#est-glow)"/>
+
+  <!-- Architectural Blueprint Vector Grid -->
+  <g stroke="#3B82F6" stroke-opacity="0.15" stroke-width="1">
+    <pattern id="cad-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3B82F6" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+    <rect width="1200" height="800" fill="url(#cad-grid)"/>
+  </g>
+
+  <g transform="translate(180, 160)">
+    <rect width="840" height="480" rx="16" fill="#13151D" stroke="#3B82F6" stroke-opacity="0.4"/>
+    <text x="50" y="55" fill="#60A5FA" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" letter-spacing="2">ESTATIKA GMBH // HIGH-PRECISION STRUCTURAL CAD &amp; BIM</text>
+    
+    <!-- CAD Wireframe Elements -->
+    <g transform="translate(50, 90)">
+      <!-- Structural Beams & Rebar Schematics -->
+      <rect x="0" y="0" width="420" height="330" rx="10" fill="#0D0F16" stroke="#3B82F6" stroke-opacity="0.3"/>
+      <!-- Cross Beams -->
+      <line x1="40" y1="40" x2="380" y2="40" stroke="#60A5FA" stroke-width="3"/>
+      <line x1="40" y1="120" x2="380" y2="120" stroke="#60A5FA" stroke-width="3"/>
+      <line x1="40" y1="200" x2="380" y2="200" stroke="#60A5FA" stroke-width="3"/>
+      <line x1="40" y1="280" x2="380" y2="280" stroke="#60A5FA" stroke-width="3"/>
+      
+      <!-- Rebar Ties -->
+      <line x1="80" y1="20" x2="80" y2="300" stroke="#4EDEA3" stroke-width="2" stroke-dasharray="4,4"/>
+      <line x1="160" y1="20" x2="160" y2="300" stroke="#4EDEA3" stroke-width="2" stroke-dasharray="4,4"/>
+      <line x1="240" y1="20" x2="240" y2="300" stroke="#4EDEA3" stroke-width="2" stroke-dasharray="4,4"/>
+      <line x1="320" y1="20" x2="320" y2="300" stroke="#4EDEA3" stroke-width="2" stroke-dasharray="4,4"/>
+
+      <!-- Annotations -->
+      <text x="50" y="320" fill="#938EA1" font-family="Space Grotesk, sans-serif" font-size="11">DIN EN 1992-1-1 COMPLIANT • ZERO DEFECT TOLERANCE</text>
+    </g>
+
+    <!-- Right Specs Card -->
+    <g transform="translate(490, 90)">
+      <rect width="300" height="330" rx="10" fill="#171A24" stroke="#484555"/>
+      <text x="30" y="45" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">Project Telemetry</text>
+      
+      <text x="30" y="85" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Jurisdiction</text>
+      <text x="30" y="110" fill="#E5E2E3" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600">North Rhine-Westphalia, Germany</text>
+
+      <text x="30" y="150" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Engineering Tools</text>
+      <text x="30" y="175" fill="#60A5FA" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600">AutoCAD • AllPlan • Tekla</text>
+
+      <text x="30" y="215" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Deliverables</text>
+      <text x="30" y="240" fill="#E5E2E3" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600">Formwork &amp; Rebar BBS Detailing</text>
+
+      <text x="30" y="280" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Rework Rate Downstream</text>
+      <text x="30" y="305" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">0.0% (100% First-Pass)</text>
+    </g>
+  </g>
+</svg>

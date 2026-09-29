@@ -1,0 +1,91 @@
+---
+// src/components/Footer.astro
+import { portfolioData } from '../data/portfolio';
+
+const personal = portfolioData.personal;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full bg-[#09090A] border-t border-white/[0.08] mt-24 py-16 text-[#938EA1]">
+  <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.06]">
+      <!-- Brand & Creator Details -->
+      <div class="flex flex-col gap-2">
+        <a href="#" class="font-display text-2xl font-bold text-[#E5E2E3] hover:text-[#CABEFF] transition-colors" aria-label="Return to top">
+          {personal.name}
+        </a>
+        <p class="font-body text-xs sm:text-sm text-[#938EA1]">
+          Designed &amp; built by <span class="text-[#E5E2E3] font-medium">{personal.name}</span>, {personal.title} in <span class="text-[#CABEFF]">{personal.city}, {personal.country}</span>.
+        </p>
+      </div>
+
+      <!-- Live Helsinki Local Time Widget -->
+      <div class="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#141418] border border-white/[0.06] text-xs font-mono">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4EDEA3] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#4EDEA3]"></span>
+        </span>
+        <span class="text-[#938EA1]">Helsinki (EEST):</span>
+        <span id="helsinki-time" class="text-[#CABEFF] font-bold">--:--:--</span>
+      </div>
+
+      <!-- Back to Top Button -->
+      <button
+        id="back-to-top"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#18181D] hover:bg-[#7C5CFF] text-[#E5E2E3] hover:text-white border border-white/10 hover:border-[#7C5CFF] text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-300 magnetic-item"
+        aria-label="Scroll back to top of page"
+      >
+        <span>Top</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-xs font-mono text-[#938EA1]">
+      <p>
+        © {currentYear} {personal.name}. All rights reserved.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="#selected-work" class="hover:text-[#E5E2E3] transition-colors">Work</a>
+        <a href="#about" class="hover:text-[#E5E2E3] transition-colors">About</a>
+        <a href="#skills" class="hover:text-[#E5E2E3] transition-colors">Skills</a>
+        <a href="#experience" class="hover:text-[#E5E2E3] transition-colors">Experience</a>
+        <a href="#contact" class="hover:text-[#E5E2E3] transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Live Helsinki Clock (Europe/Helsinki timezone)
+  function updateHelsinkiClock() {
+    const timeEl = document.getElementById('helsinki-time');
+    if (!timeEl) return;
+
+    try {
+      const now = new Date();
+      const timeStr = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/Helsinki',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      }).format(now);
+      timeEl.textContent = timeStr;
+    } catch (e) {
+      const now = new Date();
+      timeEl.textContent = now.toLocaleTimeString();
+    }
+  }
+
+  updateHelsinkiClock();
+  setInterval(updateHelsinkiClock, 1000);
+
+  // Back to top smooth scroll
+  const topBtn = document.getElementById('back-to-top');
+  topBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

@@ -1,0 +1,54 @@
+---
+// src/components/Marquee.astro
+import { portfolioData } from '../data/portfolio';
+
+const items = portfolioData.marqueeItems;
+---
+
+<section class="w-full bg-[#0E0E0F]/80 border-y border-white/[0.06] py-6 backdrop-blur-md overflow-hidden marquee-container select-none" aria-label="Companies, Platforms and Tools Marquee">
+  <div class="relative w-full overflow-hidden flex items-center">
+    <!-- Gradient Edge Fades -->
+    <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0A0A0B] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0A0A0B] to-transparent z-10 pointer-events-none"></div>
+
+    <!-- The Infinite Marquee Track (Repeated for seamless loop) -->
+    <div id="marquee-track" class="marquee-track flex items-center gap-12 sm:gap-16 whitespace-nowrap">
+      <!-- Set 1 -->
+      {items.map((item) => (
+        <div class="flex items-center gap-4 text-sm md:text-base font-display font-semibold tracking-wide text-[#938EA1] hover:text-[#E5E2E3] transition-colors duration-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#7C5CFF]/60"></span>
+          <span>{item}</span>
+        </div>
+      ))}
+      <!-- Set 2 -->
+      {items.map((item) => (
+        <div class="flex items-center gap-4 text-sm md:text-base font-display font-semibold tracking-wide text-[#938EA1] hover:text-[#E5E2E3] transition-colors duration-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#7C5CFF]/60"></span>
+          <span>{item}</span>
+        </div>
+      ))}
+      <!-- Set 3 -->
+      {items.map((item) => (
+        <div class="flex items-center gap-4 text-sm md:text-base font-display font-semibold tracking-wide text-[#938EA1] hover:text-[#E5E2E3] transition-colors duration-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#7C5CFF]/60"></span>
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Speed up marquee on scroll, slow on hover
+  let lastScrollTime = 0;
+  const track = document.getElementById('marquee-track');
+
+  window.addEventListener('scroll', () => {
+    if (!track) return;
+    track.style.animationDuration = '14s'; // Faster during scrolling
+    clearTimeout(lastScrollTime);
+    lastScrollTime = window.setTimeout(() => {
+      track.style.animationDuration = '28s'; // Normal speed
+    }, 400);
+  }, { passive: true });
+</script>

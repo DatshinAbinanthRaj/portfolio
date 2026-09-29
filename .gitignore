@@ -1,0 +1,22 @@
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment & Temp
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+*.zip
+
+# Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="nine-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090C"/>
+      <stop offset="50%" stop-color="#12111A"/>
+      <stop offset="100%" stop-color="#0E0E12"/>
+    </linearGradient>
+    <radialGradient id="nine-glow" cx="65%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#4EDEA3" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#nine-bg)"/>
+  <circle cx="800" cy="300" r="400" fill="url(#nine-glow)"/>
+
+  <!-- Telemetry Graph Nodes -->
+  <g stroke="#7C5CFF" stroke-opacity="0.3" stroke-width="1.5">
+    <line x1="250" y1="350" x2="450" y2="250"/>
+    <line x1="450" y1="250" x2="680" y2="380"/>
+    <line x1="450" y1="250" x2="650" y2="180"/>
+    <line x1="680" y1="380" x2="950" y2="320"/>
+  </g>
+
+  <!-- Metric Badges -->
+  <g transform="translate(180, 160)">
+    <rect width="840" height="480" rx="16" fill="#141418" stroke="#484555" stroke-opacity="0.6"/>
+    <text x="40" y="55" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" letter-spacing="2">9UP.AI // HUMAN-IN-THE-LOOP EVALUATION OS</text>
+    
+    <!-- 3 Stat Modules -->
+    <rect x="40" y="85" width="235" height="110" rx="10" fill="#1C1B20" stroke="#7C5CFF" stroke-opacity="0.3"/>
+    <text x="60" y="120" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Rubric Disagreement</text>
+    <text x="60" y="160" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700">-38%</text>
+
+    <rect x="300" y="85" width="235" height="110" rx="10" fill="#1C1B20" stroke="#7C5CFF" stroke-opacity="0.3"/>
+    <text x="320" y="120" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Annotator Consensus</text>
+    <text x="320" y="160" fill="#CABEFF" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700">99.4%</text>
+
+    <rect x="560" y="85" width="240" height="110" rx="10" fill="#1C1B20" stroke="#7C5CFF" stroke-opacity="0.3"/>
+    <text x="580" y="120" fill="#938EA1" font-family="Inter, sans-serif" font-size="12">Batches Validated</text>
+    <text x="580" y="160" fill="#E5E2E3" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700">1,200+</text>
+
+    <!-- Rubric Table View -->
+    <rect x="40" y="225" width="760" height="210" rx="10" fill="#19191E" stroke="#353436"/>
+    <text x="65" y="260" fill="#CABEFF" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">CRITERIA</text>
+    <text x="360" y="260" fill="#CABEFF" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">WEIGHT</text>
+    <text x="540" y="260" fill="#CABEFF" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">ACCURACY</text>
+    <text x="700" y="260" fill="#CABEFF" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">STATUS</text>
+
+    <line x1="40" y1="275" x2="800" y2="275" stroke="#353436"/>
+
+    <text x="65" y="310" fill="#E5E2E3" font-family="Inter, sans-serif" font-size="13">Factual Consistency &amp; Citation</text>
+    <text x="360" y="310" fill="#938EA1" font-family="Space Grotesk, sans-serif" font-size="13">0.35</text>
+    <text x="540" y="310" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="13">99.8%</text>
+    <text x="700" y="310" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="13">PASS</text>
+
+    <text x="65" y="355" fill="#E5E2E3" font-family="Inter, sans-serif" font-size="13">Multi-Turn Instruction Adherence</text>
+    <text x="360" y="355" fill="#938EA1" font-family="Space Grotesk, sans-serif" font-size="13">0.30</text>
+    <text x="540" y="355" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="13">99.2%</text>
+    <text x="700" y="355" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="13">PASS</text>
+
+    <text x="65" y="400" fill="#E5E2E3" font-family="Inter, sans-serif" font-size="13">Red-Teaming Safety Guardrails</text>
+    <text x="360" y="400" fill="#938EA1" font-family="Space Grotesk, sans-serif" font-size="13">0.35</text>
+    <text x="540" y="400" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="13">100.0%</text>
+    <text x="700" y="400" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="13">PASS</text>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <rect width="180" height="180" rx="40" fill="#0E0E10"/>
+  <rect x="4" y="4" width="172" height="172" rx="36" fill="none" stroke="#7C5CFF" stroke-width="4" stroke-opacity="0.4"/>
+  <text x="90" y="118" fill="#CABEFF" font-family="Space Grotesk, sans-serif" font-size="80" font-weight="700" text-anchor="middle" letter-spacing="-2">DA</text>
+  <circle cx="140" cy="48" r="10" fill="#4EDEA3"/>
+</svg>

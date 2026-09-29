@@ -1,0 +1,37 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import SelectedWork from '../components/SelectedWork.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout
+  title="Datshin Abinanth Raj | AI Trainer & Data Lead in Helsinki"
+  description="Datshin Abinanth Raj is an AI Trainer and Human Data Lead in Helsinki, bridging 10+ years of structural precision with LLM evaluation and RLHF operations."
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Companies / Tools Infinite Marquee -->
+  <Marquee />
+
+  <!-- Selected Work Bento Grid -->
+  <SelectedWork />
+
+  <!-- About Section with Candid Photo and Stats -->
+  <About />
+
+  <!-- Skills and Methodologies Grid -->
+  <Skills />
+
+  <!-- Experience & Trajectory Timeline -->
+  <Experience />
+
+  <!-- Contact & Collaboration Section -->
+  <Contact />
+</Layout>

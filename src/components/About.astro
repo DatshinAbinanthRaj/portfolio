@@ -1,0 +1,130 @@
+---
+// src/components/About.astro
+import { portfolioData } from '../data/portfolio';
+
+const personal = portfolioData.personal;
+const stats = personal.stats;
+---
+
+<section id="about" class="w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <!-- Left Column: Candid Photo Container with Glass Accents -->
+    <div class="lg:col-span-5 relative">
+      <div class="relative rounded-3xl overflow-hidden bg-[#16151B] border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.3)] aspect-[4/5] group">
+        <picture>
+          <source srcset="/images/about-candid.webp" type="image/webp" />
+          <img
+            src="/images/about-candid.jpg"
+            alt="Datshin Abinanth Raj collaborating on AI workflows and engineering specifications"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="500"
+            class="w-full h-full object-cover object-center filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
+          />
+        </picture>
+        <!-- Ambient Vignette -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0B]/90 via-[#0A0A0B]/20 to-transparent"></div>
+
+        <!-- Floating Badge in Photo -->
+        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#141418]/90 backdrop-blur-xl border border-white/10">
+          <p class="font-display font-bold text-sm text-[#E5E2E3]">Haaga-Helia UAS • Helsinki</p>
+          <p class="text-xs text-[#938EA1] font-mono mt-0.5">BBA in Information Technology (AI &amp; Data)</p>
+        </div>
+      </div>
+
+      <!-- Accent Decorative Background Light -->
+      <div class="absolute -bottom-8 -right-8 w-64 h-64 bg-[#7C5CFF]/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+    </div>
+
+    <!-- Right Column: First-Person Bio & Animated Counter Stats -->
+    <div class="lg:col-span-7 flex flex-col items-start">
+      <!-- Section Tag -->
+      <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#7C5CFF] mb-3">
+        <span class="w-2 h-2 rounded-full bg-[#7C5CFF]"></span>
+        <span>02 // Biography</span>
+      </div>
+
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#E5E2E3] mb-8">
+        Engineering Discipline Applied to Frontier AI
+      </h2>
+
+      <!-- Confident & Warm First-Person Bio (104 Words) -->
+      <div class="space-y-4 font-body text-base sm:text-lg text-[#C9C4D8] leading-relaxed mb-10">
+        <p>
+          "{personal.aboutBio1}"
+        </p>
+        <p class="text-[#938EA1] text-sm sm:text-base">
+          "{personal.aboutBio2}"
+        </p>
+      </div>
+
+      <!-- Animated Stat Counters -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8 border-t border-white/10" id="stats-container">
+        {stats.map((stat) => (
+          <div class="p-4 rounded-2xl bg-[#141418] border border-white/[0.06] hover:border-[#7C5CFF]/40 transition-colors duration-300">
+            <div class="font-display text-3xl sm:text-4xl font-bold text-[#CABEFF] tracking-tight mb-1 flex items-baseline">
+              <span class="stat-number" data-target={stat.value.replace(/[^0-9.]/g, '')}>0</span>
+              <span class="text-[#7C5CFF] text-xl font-bold">{stat.value.replace(/[0-9.]/g, '')}</span>
+            </div>
+            <p class="text-xs font-display font-semibold text-[#E5E2E3] uppercase tracking-wider mb-1">
+              {stat.label}
+            </p>
+            <p class="text-[11px] font-mono text-[#938EA1] leading-tight">
+              {stat.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCounters() {
+    const container = document.getElementById('stats-container');
+    if (!container) return;
+
+    let animated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          const statEls = container.querySelectorAll('.stat-number');
+
+          statEls.forEach(el => {
+            const targetVal = parseFloat(el.getAttribute('data-target') || '0');
+            const isFloat = targetVal % 1 !== 0;
+            const duration = 1400; // ms
+            const startTime = performance.now();
+
+            function countStep(now: number) {
+              const elapsed = now - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+              const current = targetVal * eased;
+
+              el.textContent = isFloat ? current.toFixed(1) : Math.floor(current).toString();
+
+              if (progress < 1) {
+                requestAnimationFrame(countStep);
+              } else {
+                el.textContent = isFloat ? targetVal.toFixed(1) : targetVal.toString();
+              }
+            }
+            requestAnimationFrame(countStep);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(container);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
+</script>

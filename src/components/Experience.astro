@@ -1,0 +1,151 @@
+---
+// src/components/Experience.astro
+import { portfolioData } from '../data/portfolio';
+
+const experiences = portfolioData.experiences;
+const education = portfolioData.education;
+---
+
+<section id="experience" class="w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <div>
+      <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#7C5CFF] mb-3">
+        <span class="w-2 h-2 rounded-full bg-[#7C5CFF]"></span>
+        <span>04 // Trajectory</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#E5E2E3]">
+        Work Experience &amp; Leadership
+      </h2>
+    </div>
+    <p class="font-body text-sm sm:text-base text-[#938EA1] max-w-md">
+      A decadelong progression of technical execution, team leadership, zero-defect drafting, and AI model evaluation.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <!-- Work Experience Timeline (8 Cols) -->
+    <div class="lg:col-span-8 relative">
+      <!-- The Vertical Glow Timeline Track -->
+      <div class="absolute left-4 sm:left-6 top-3 bottom-3 w-0.5 bg-[#201F25]">
+        <div id="timeline-fill" class="w-full bg-gradient-to-b from-[#7C5CFF] via-[#CABEFF] to-[#4EDEA3] h-0 transition-all duration-300"></div>
+      </div>
+
+      <div class="space-y-8 relative">
+        {experiences.map((exp, index) => (
+          <div class="relative pl-12 sm:pl-16 group timeline-entry">
+            <!-- Glowing Milestone Node -->
+            <div class="absolute left-2.5 sm:left-4.5 top-1.5 w-3.5 h-3.5 rounded-full bg-[#18181D] border-2 border-[#7C5CFF] group-hover:scale-125 group-hover:bg-[#7C5CFF] group-hover:shadow-[0_0_15px_#7C5CFF] transition-all duration-300"></div>
+
+            <div class="p-6 rounded-2xl bg-[#141417] border border-white/[0.06] hover:border-[#7C5CFF]/40 transition-all duration-300">
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2 gap-1">
+                <h3 class="font-display text-lg sm:text-xl font-bold text-[#E5E2E3] group-hover:text-[#CABEFF] transition-colors duration-200">
+                  {exp.company}
+                </h3>
+                <span class="text-xs font-mono text-[#7C5CFF] font-semibold whitespace-nowrap">
+                  {exp.period}
+                </span>
+              </div>
+
+              <div class="flex items-center gap-3 text-xs text-[#938EA1] mb-3">
+                <span class="font-medium text-[#CABEFF]">{exp.role}</span>
+                <span>•</span>
+                <span class="font-mono">{exp.location}</span>
+              </div>
+
+              <p class="font-body text-xs sm:text-sm text-[#C9C4D8] mb-4">
+                {exp.description}
+              </p>
+
+              <!-- Highlights / Key Achievements -->
+              <ul class="space-y-1.5 border-t border-white/[0.04] pt-3">
+                {exp.highlights.map((h) => (
+                  <li class="flex items-start gap-2 text-xs font-mono text-[#938EA1] leading-relaxed">
+                    <span class="text-[#4EDEA3] font-bold mt-0.5">›</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Right Column: Education & Degrees (4 Cols) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      <div class="p-6 sm:p-8 rounded-3xl bg-[#16151B] border border-white/10 sticky top-28">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-[#7C5CFF]/20 flex items-center justify-center text-[#CABEFF]">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-[#E5E2E3]">Education</h3>
+            <p class="text-xs font-mono text-[#938EA1]">Academic Foundations</p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          {education.map((edu) => (
+            <div class="p-4 rounded-2xl bg-[#1C1B20] border border-white/[0.06]">
+              <h4 class="font-display text-sm font-bold text-[#E5E2E3] mb-1">
+                {edu.institution}
+              </h4>
+              <p class="text-xs font-semibold text-[#7C5CFF] mb-1">
+                {edu.degree}
+              </p>
+              <p class="text-[11px] font-mono text-[#938EA1] mb-2">
+                {edu.period} • {edu.location}
+              </p>
+              <p class="text-xs font-body text-[#C9C4D8] leading-relaxed">
+                {edu.details}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Download CV Action in Sidebar -->
+        <a
+          href="/cv.pdf"
+          download="Datshin_Abinanth_Raj_CV.pdf"
+          class="mt-6 w-full py-3 rounded-xl font-display text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 bg-[#201F25] hover:bg-[#7C5CFF] hover:text-white border border-white/10 hover:border-[#7C5CFF] transition-all duration-300"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span>Download Complete Resume</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Fill vertical timeline track with scroll
+  function updateTimelineProgress() {
+    const section = document.getElementById('experience');
+    const fill = document.getElementById('timeline-fill');
+    if (!section || !fill) return;
+
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const totalH = rect.height;
+      const visibleH = windowH - rect.top;
+
+      let progress = 0;
+      if (rect.top <= windowH) {
+        progress = Math.min(Math.max(visibleH / totalH, 0), 1);
+      }
+      fill.style.height = `${progress * 100}%`;
+    }, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateTimelineProgress);
+  } else {
+    updateTimelineProgress();
+  }
+</script>

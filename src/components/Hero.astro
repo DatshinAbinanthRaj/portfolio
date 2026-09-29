@@ -1,0 +1,152 @@
+---
+// src/components/Hero.astro
+import { portfolioData } from '../data/portfolio';
+
+const headlineWords = portfolioData.personal.heroHeadline.split(' ');
+---
+
+<section class="relative w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden min-h-[92vh] flex flex-col justify-center">
+  <!-- Subtle Ambient Glow Orbs -->
+  <div class="absolute -top-24 left-1/4 w-96 h-96 bg-[#7C5CFF]/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+  <div class="absolute top-1/2 right-10 w-80 h-80 bg-[#4EDEA3]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <!-- Left Hero Typography -->
+    <div class="lg:col-span-7 flex flex-col items-start z-10">
+      <!-- Semantic H1 containing Name and Role for perfect SEO -->
+      <h1 class="sr-only">
+        {portfolioData.personal.name} — {portfolioData.personal.title} in {portfolioData.personal.city}, {portfolioData.personal.country}
+      </h1>
+
+      <!-- Status Pill Badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#18181C] border border-[#7C5CFF]/30 text-xs font-mono uppercase tracking-wider text-[#CABEFF] shadow-[0_0_20px_rgba(124,92,255,0.15)] mb-8">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4EDEA3] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#4EDEA3]"></span>
+        </span>
+        <span>{portfolioData.personal.statusBadge}</span>
+      </div>
+
+      <!-- Designer / Engineer Callout -->
+      <p class="font-mono text-xs uppercase tracking-widest text-[#7C5CFF] font-semibold mb-3">
+        {portfolioData.personal.name} // {portfolioData.personal.title}
+      </p>
+
+      <!-- Huge Hero Headline with Masked Word-by-Word Slide Up Reveal -->
+      <div class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#E5E2E3] leading-[1.08] mb-6" id="hero-headline">
+        {headlineWords.map((word, i) => (
+          <span class="reveal-wrapper mr-2.5 md:mr-3.5 mb-1 inline-block">
+            <span class="reveal-word" style={`transition-delay: ${100 + i * 65}ms;`}>
+              {word === 'Precision' || word === 'Frontier' ? (
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#CABEFF] to-[#7C5CFF]">{word}</span>
+              ) : (
+                word
+              )}
+            </span>
+          </span>
+        ))}
+      </div>
+
+      <!-- One-Line Intro -->
+      <p class="font-body text-base sm:text-lg md:text-xl text-[#938EA1] leading-relaxed max-w-2xl mb-10">
+        {portfolioData.personal.heroIntro}
+      </p>
+
+      <!-- CTA Action Buttons -->
+      <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+        <!-- View My Work -->
+        <a
+          href="#selected-work"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-display text-sm font-semibold tracking-wide text-white bg-gradient-to-r from-[#7C5CFF] to-[#603CE2] hover:from-[#947DFF] hover:to-[#7C5CFF] shadow-[0_0_30px_rgba(124,92,255,0.4)] hover:shadow-[0_0_40px_rgba(124,92,255,0.65)] hover:-translate-y-0.5 transition-all duration-300 magnetic-item"
+        >
+          <span>View My Work</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </a>
+
+        <!-- Download CV (links to cv.pdf) -->
+        <a
+          href="/cv.pdf"
+          download="Datshin_Abinanth_Raj_CV.pdf"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-display text-sm font-semibold tracking-wide text-[#E5E2E3] bg-[#1A1A1E] hover:bg-[#24232B] border border-white/10 hover:border-[#7C5CFF]/60 hover:-translate-y-0.5 transition-all duration-300 magnetic-item"
+          aria-label="Download Datshin's CV in PDF format"
+        >
+          <svg class="w-4 h-4 text-[#7C5CFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span>Download CV</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Hero Visual: Portrait in Organic Blob Frame with Accent Glow -->
+    <div class="lg:col-span-5 flex justify-center lg:justify-end relative mt-6 lg:mt-0">
+      <div class="relative w-[280px] h-[373px] sm:w-[320px] sm:h-[426px] md:w-[360px] md:h-[480px]">
+        <!-- Ambient Radial Glow Behind Blob -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#7C5CFF]/40 to-[#4EDEA3]/20 rounded-full blur-2xl transform scale-110 -z-10"></div>
+        
+        <!-- Decorative Orbit Rings -->
+        <div class="absolute -inset-4 border border-[#7C5CFF]/20 rounded-full animate-spin [animation-duration:45s] pointer-events-none"></div>
+        <div class="absolute -inset-8 border border-white/5 rounded-full pointer-events-none"></div>
+
+        <!-- The Organic Blob Frame with Portrait Image -->
+        <div class="organic-blob-frame w-full h-full relative bg-[#18181C]">
+          <picture>
+            <source srcset="/images/portrait.webp" type="image/webp" />
+            <img
+              src="/images/portrait.png"
+              alt="Portrait photograph of Datshin Abinanth Raj, AI Trainer and Model Evaluation Specialist"
+              width="384"
+              height="512"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full h-full object-cover object-top filter grayscale contrast-105 hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105"
+            />
+          </picture>
+          <!-- Gradient Vignette -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0B]/80 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- Floating High-Tech Telemetry Pill -->
+        <div class="absolute -bottom-4 -left-4 sm:-left-6 px-4 py-2.5 rounded-2xl bg-[#16151B]/95 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-[#7C5CFF]/20 flex items-center justify-center text-[#CABEFF]">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-[10px] font-mono uppercase tracking-wider text-[#938EA1]">QA Evaluation</p>
+            <p class="text-xs font-display font-bold text-[#4EDEA3]">99.4% Adherence</p>
+          </div>
+        </div>
+
+        <!-- Floating Location Pill -->
+        <div class="absolute -top-4 -right-2 sm:-right-4 px-3.5 py-2 rounded-xl bg-[#16151B]/95 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#7C5CFF]"></span>
+          <span class="text-[11px] font-mono text-[#E5E2E3]">Helsinki, FI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[#938EA1] pointer-events-none">
+    <span class="text-[10px] font-mono uppercase tracking-widest text-[#7C5CFF]">Scroll</span>
+    <div class="w-5 h-9 rounded-full border-2 border-[#938EA1]/40 flex justify-center p-1">
+      <div class="w-1 h-2 rounded-full bg-[#7C5CFF] animate-bounce"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function triggerHeadlineReveal() {
+    const words = document.querySelectorAll('.reveal-word');
+    words.forEach(word => {
+      word.classList.add('is-revealed');
+    });
+  }
+
+  document.addEventListener('loader-finished', triggerHeadlineReveal);
+  setTimeout(triggerHeadlineReveal, 900);
+</script>

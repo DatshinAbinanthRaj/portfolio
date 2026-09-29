@@ -1,0 +1,108 @@
+---
+// src/components/Loader.astro
+---
+
+<script is:inline>
+  if (navigator.webdriver || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('no-loader');
+  }
+</script>
+
+<div id="intro-loader" class="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-[#0A0A0B] text-[#E5E2E3] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] pointer-events-auto">
+  <div class="relative flex flex-col items-center">
+    <!-- Initials SVG Drawing Animation -->
+    <svg class="w-20 h-20 mb-5" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="92" height="92" rx="20" stroke="#7C5CFF" stroke-width="2.5" stroke-dasharray="368" stroke-dashoffset="368" class="loader-rect" />
+      <!-- D -->
+      <path d="M30 30V70H45C56 70 62 62 62 50C62 38 56 30 45 30H30ZM38 38H44C51 38 54 43 54 50C54 57 51 62 44 62H38V38Z" fill="none" stroke="#CABEFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="200" stroke-dashoffset="200" class="loader-path-d" />
+      <!-- Dot indicator -->
+      <circle cx="70" cy="30" r="4" fill="#4EDEA3" class="opacity-0 loader-dot" />
+    </svg>
+
+    <!-- Counter 0 -> 100 -->
+    <div class="flex items-baseline gap-1 font-display font-bold">
+      <span id="loader-counter" class="text-3xl sm:text-4xl text-[#E5E2E3]">0</span>
+      <span class="text-sm text-[#7C5CFF] font-mono">%</span>
+    </div>
+    <p class="text-[11px] uppercase tracking-widest text-[#938EA1] mt-2 font-mono">Initializing System</p>
+  </div>
+</div>
+
+<style>
+  :global(.no-loader) #intro-loader {
+    display: none !important;
+  }
+
+  .loader-rect {
+    animation: drawRect 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .loader-path-d {
+    animation: drawInitials 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+  .loader-dot {
+    animation: fadeInDot 0.2s ease 0.5s forwards;
+  }
+
+  @keyframes drawRect {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes drawInitials {
+    to { stroke-dashoffset: 0; fill: rgba(202, 190, 255, 0.15); }
+  }
+  @keyframes fadeInDot {
+    to { opacity: 1; transform: scale(1.1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #intro-loader {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  function initLoader() {
+    const loader = document.getElementById('intro-loader');
+    const counter = document.getElementById('loader-counter');
+    if (!loader || !counter) return;
+
+    if (document.documentElement.classList.contains('no-loader')) {
+      loader.style.display = 'none';
+      document.dispatchEvent(new CustomEvent('loader-finished'));
+      return;
+    }
+
+    let count = 0;
+    const duration = 500; // ms for fast, smooth Apple-style intro under 1.8s
+    const startTime = performance.now();
+
+    function updateCounter(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 2);
+      count = Math.floor(easedProgress * 100);
+      counter.textContent = count.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = '100';
+        setTimeout(() => {
+          loader.style.transform = 'translateY(-100%)';
+          document.dispatchEvent(new CustomEvent('loader-finished'));
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 500);
+        }, 120);
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoader);
+  } else {
+    initLoader();
+  }
+</script>

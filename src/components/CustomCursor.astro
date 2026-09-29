@@ -1,0 +1,80 @@
+---
+// src/components/CustomCursor.astro
+---
+
+<div id="cursor-dot" class="custom-cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" class="custom-cursor-ring" aria-hidden="true">
+  <span id="cursor-text">View</span>
+</div>
+
+<script>
+  function setupCursor() {
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    const text = document.getElementById('cursor-text');
+    if (!dot || !ring) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isMoving = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isMoving) {
+        isMoving = true;
+        ringX = mouseX;
+        ringY = mouseY;
+      }
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    }, { passive: true });
+
+    function renderRing() {
+      // Smooth lerp (lagging ring)
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(renderRing);
+    }
+    requestAnimationFrame(renderRing);
+
+    // Interactive elements hover detection
+    const interactives = document.querySelectorAll('a, button, input, textarea, select, [data-cursor-hover]');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+    });
+
+    // Project cards view prompt
+    const projectCards = document.querySelectorAll('[data-cursor-project]');
+    projectCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        ring.classList.add('is-hovering', 'is-project');
+      });
+      card.addEventListener('mouseleave', () => {
+        ring.classList.remove('is-hovering', 'is-project');
+      });
+    });
+
+    // Window leave
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCursor);
+  } else {
+    setupCursor();
+  }
+</script>

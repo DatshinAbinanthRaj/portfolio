@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="aira-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0E10"/>
+      <stop offset="50%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#09090B"/>
+    </linearGradient>
+    <linearGradient id="aira-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#4EDEA3" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#aira-bg)"/>
+  <circle cx="600" cy="280" r="450" fill="url(#aura)"/>
+  
+  <!-- Grid Matrix -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+    <line x1="300" y1="0" x2="300" y2="800"/>
+    <line x1="600" y1="0" x2="600" y2="800"/>
+    <line x1="900" y1="0" x2="900" y2="800"/>
+  </g>
+
+  <!-- Floating Chat Window Frame -->
+  <g transform="translate(200, 140)">
+    <rect width="800" height="520" rx="16" fill="#18181C" fill-opacity="0.85" stroke="#7C5CFF" stroke-opacity="0.3" stroke-width="1.5"/>
+    <!-- Window Bar -->
+    <rect width="800" height="48" rx="16" fill="#202026"/>
+    <rect y="36" width="800" height="12" fill="#202026"/>
+    <circle cx="28" cy="24" r="6" fill="#FF5F56"/>
+    <circle cx="48" cy="24" r="6" fill="#FFBD2E"/>
+    <circle cx="68" cy="24" r="6" fill="#27C93F"/>
+    <text x="400" y="29" fill="#938EA1" font-family="Space Grotesk, sans-serif" font-size="12" text-anchor="middle" font-weight="600" letter-spacing="1">AIRA // ANTHROPIC CLAUDE STREAMING UI</text>
+
+    <!-- Chat Message Bubble 1 (User) -->
+    <rect x="360" y="80" width="400" height="60" rx="12" fill="#7C5CFF" fill-opacity="0.15" stroke="#7C5CFF" stroke-opacity="0.4"/>
+    <text x="380" y="115" fill="#E5E2E3" font-family="Inter, sans-serif" font-size="14">Analyze evaluation rubrics for multi-turn alignment.</text>
+
+    <!-- Chat Message Bubble 2 (AI Assistant) -->
+    <rect x="40" y="165" width="560" height="160" rx="12" fill="#201F22" stroke="#4EDEA3" stroke-opacity="0.3"/>
+    <circle cx="65" cy="190" r="10" fill="#4EDEA3" fill-opacity="0.2"/>
+    <circle cx="65" cy="190" r="4" fill="#4EDEA3"/>
+    <text x="88" y="195" fill="#4EDEA3" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">CLAUDE-3.5-SONNET • STREAMING (84 tok/s)</text>
+    <text x="65" y="235" fill="#C9C4D8" font-family="Inter, sans-serif" font-size="14">✓ Evaluated 4 key rubric criteria: factual correctness, nuance preservation,</text>
+    <text x="65" y="260" fill="#C9C4D8" font-family="Inter, sans-serif" font-size="14">hallucination defense, and contextual grounding across edge scenarios.</text>
+    <text x="65" y="295" fill="#938EA1" font-family="Space Grotesk, sans-serif" font-size="11">LATENCY: 240ms | TOKENS: 1,420 | COST: $0.004</text>
+
+    <!-- Terminal Input Bar -->
+    <rect x="40" y="360" width="720" height="54" rx="12" fill="#131315" stroke="#484555"/>
+    <text x="60" y="392" fill="#7C5CFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">&gt;</text>
+    <text x="80" y="392" fill="#938EA1" font-family="Inter, sans-serif" font-size="14">Type an instruction or feed prompt pair...</text>
+    <rect x="680" y="372" width="65" height="30" rx="6" fill="#7C5CFF"/>
+    <text x="712" y="391" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" text-anchor="middle">SEND</text>
+  </g>
+</svg>

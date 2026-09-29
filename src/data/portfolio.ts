@@ -54,7 +54,7 @@ export const portfolioData = {
     ],
     socials: [
       { name: "LinkedIn", url: "https://www.linkedin.com/in/datshin-abinanth-raj-n-h-a09144176", icon: "linkedin" },
-      { name: "GitHub", url: "https://github.com/datshin", icon: "github" },
+      { name: "GitHub", url: "https://github.com/DatshinAbinanthRaj", icon: "github" },
       { name: "Website", url: "https://9up.ai", icon: "globe" },
       { name: "Email", url: "mailto:abinanth28@gmail.com", icon: "mail" },
     ],
